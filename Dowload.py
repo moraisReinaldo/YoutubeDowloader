@@ -6,7 +6,7 @@ class Tela:
         l = [
             [sg.Text('link'), sg.Input(key='li')],
             [sg.Button('Dowload')],
-            [sg.Output(size=(10,10))]
+            [sg.Output(size=(50,1))]
         ]
         
         self.j = sg.Window('Dowloader').layout(l)
@@ -14,10 +14,11 @@ class Tela:
     def Iniciar(self):
         while True:
             self.button, self.values = self.j.Read()
+            
             link = self.values['li']
             yt = pytube.YouTube(link)
             yt.streams.first().download()
-            print("Baixado", link)
+            print(f'Baixado {link}')
 
 tela =  Tela()
 tela.Iniciar()
