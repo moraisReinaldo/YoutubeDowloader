@@ -5,6 +5,7 @@ class Tela:
     def __init__(self):
         l = [
             [sg.Text('link'), sg.Input(key='li')],
+            [sg.Text('Pasta para salvar'), sg.Input(key='pa')],
             [sg.Button('Dowload')],
             [sg.Output(size=(50,1))]
         ]
@@ -14,10 +15,20 @@ class Tela:
     def Iniciar(self):
         while True:
             self.button, self.values = self.j.Read()
-            
+
             link = self.values['li']
+            path = self.values['pa']
+            
             yt = pytube.YouTube(link)
-            yt.streams.first().download()
+            
+            yv = yt.streams.get_highest_resolution()
+            #ya = yt.streams.get_audio_only()
+            
+            print('Baixando...')
+            
+            yv.download(path)
+            #ya.download(path)
+
             print(f'Baixado {link}')
 
 tela =  Tela()
