@@ -1,12 +1,11 @@
-from curses import keyname
 import pytube 
 import PySimpleGUI as sg
 
 class Tela:
     def __init__(self):
         l = [
-            [sg.Text('link'), sg.Input(), keyname = 'li']
-            [sg.Button()]
+            [sg.Text('link'), sg.Input(key='li')],
+            [sg.Button('Dowload')]
         ]
         
         j = sg.Window('Dowloader').layout(l)
@@ -19,6 +18,8 @@ class Tela:
         yt.streams.first().download()
         print("Baixado", link)
 
+tela =  Tela()
+tela.Iniciar()
 
 
 
