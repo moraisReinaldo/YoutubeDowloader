@@ -22,12 +22,10 @@ class Tela:
             yt = pytube.YouTube(link)
             
             yv = yt.streams.get_highest_resolution()
-            #ya = yt.streams.get_audio_only()
             
             print('Baixando...')
             
             yv.download(path)
-            #ya.download(path)
 
             print(f'Baixado {link}')
 
